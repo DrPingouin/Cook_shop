@@ -6,7 +6,7 @@ services:
     ports:
       - '3306:3306'
     environment:
-       MYSQL_DATABASE: 'ines_shop_db'
+       MYSQL_DATABASE: 'cook_shop_db'
        MYSQL_USER: 'root'
        MYSQL_PASSWORD: 'password'
        MYSQL_ROOT_PASSWORD: 'password'
@@ -14,7 +14,7 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/ines_shop
+      - .:/cook_shop
     ports:
       - "8000:8000"
     depends_on:
