@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %} Liste types{% endblock %}
+
+{% block content %}
+    {% for t in types %}
+        <p>{{ t.name }}</p>
+    {% endfor %}
+{% endblock %}

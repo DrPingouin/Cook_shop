@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %} Liste ingrédients{% endblock %}
+
+{% block content %}
+    {% for i in ingredients %}
+        <p>{{ i.name }} {{i.type.name }}</p>
+    {% endfor %}
+{% endblock %}
