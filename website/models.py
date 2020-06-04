@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Type(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
+
 
 class Ingredient(models.Model):
     """
@@ -17,11 +19,15 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+
 class CannedFood(models.Model):
     name = models.CharField(max_length=20)
     price = models.IntegerField(default=1)
-    note = models.TextField(max_length=1000)
+    note = models.TextField(max_length=1000, null=True)
     ingredients = models.ManyToManyField(Ingredient)
 
     def __str__(self):
         return self.name
+
+    def get_ingredients(self):
+        return [i for i in self.ingredients.all()]

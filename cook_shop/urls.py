@@ -19,7 +19,7 @@ import website.views as website
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', website.welcome, name='welcome'),
+    path('', website.home, name='home'),
     path('types', website.types, name='types'),
     path('ingredients', website.ingredients, name='ingredients'),
     # path('ingredient/<:int>', website.ingredient)
