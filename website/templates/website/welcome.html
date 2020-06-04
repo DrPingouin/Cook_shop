@@ -5,4 +5,18 @@
 
 {% block content %}
 <p>Le contenu wesh</p>
+<form class="balec" method="POST" action="" >
+    <input class="balec" type="search" name="canned_search">
+    <button class="balec" type="submit"> Rechercher un produit </button>
+    {% csrf_token %}
+    </form>
+
+{% for i in canned_food %}
+        <p>
+            <br>{{ i.name }}
+            <br>le prix du produit est de :{{i.price }}
+            <br>{{i.note }}
+            <br>{{i.ingredients.all }}
+        </p>
+    {% endfor %}
 {% endblock %}
