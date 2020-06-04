@@ -5,7 +5,7 @@ from django.db.models import Q
 from website.models import Type, CannedFood, Ingredient
 
 
-def home(request):
+def shop(request):
     if request.method == 'POST':
         x = request.POST['canned_search']
         data = {
@@ -15,7 +15,7 @@ def home(request):
         }
     else:
         data = {'canned_food': CannedFood.objects.all()}
-    return render(request, 'website/home.html', data)
+    return render(request, 'website/shop.html', data)
 
 
 def types(request):
