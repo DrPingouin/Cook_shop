@@ -3,6 +3,11 @@
 {% block title %} Liste ingrédients{% endblock %}
 
 {% block content %}
+ <form class="balec" method="POST" action="" >
+    <input class="balec" type="search" name="search">
+    <button class="balec" type="submit"> Search </button>
+     {% csrf_token %}
+    </form>
     {% for i in ingredients %}
         <p>{{ i.name }} {{i.type.name }}</p>
     {% endfor %}

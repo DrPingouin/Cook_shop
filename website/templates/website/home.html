@@ -8,6 +8,11 @@
 {% endblock %}
 
 {% block content %}
+    <form class="balec" method="POST" action="" >
+        <input class="balec" type="search" name="canned_search">
+        <button class="balec" type="submit"> Rechercher un produit </button>
+        {% csrf_token %}
+    </form>
     <div class="container">
         <div class="row canned_row">
             {% for c in canned_food %}
