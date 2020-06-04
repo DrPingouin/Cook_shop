@@ -1,5 +1,6 @@
-let CARD_SELECTOR = '.canned_card',
-    INGREDIENTS_ROW_SELECTOR = '.canned_ingredients_row';
+const CARD_SELECTOR = '.canned_card',
+    INGREDIENTS_ROW_SELECTOR = '.canned_ingredients_row',
+    AJAX_URL = '';
 
 
 $('.caret_img').on('click', function(){
@@ -11,6 +12,12 @@ $('.caret_img').on('click', function(){
         expand_ingredient_list($(this));
     }
 });
+
+$('#form_search').on('submit', function(e) {
+    e.preventDefault();
+    data = $(this).serialize();
+    update_page(data)
+})
 
 
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 
 from website.models import Type, CannedFood, Ingredient
@@ -7,15 +7,14 @@ from website.models import Type, CannedFood, Ingredient
 
 def shop(request):
     if request.method == 'POST':
-        x = request.POST['canned_search']
-        data = {
-            'canned_food': CannedFood.objects.filter(
-                Q(ingredients__name__contains=x) | Q(name__contains=x)
-            ).distinct()
-        }
+        search = request.POST['canned_search']
+        result = CannedFood.objects.filter(
+                    Q(ingredients__name__contains=search) | Q(name__contains=search)
+                ).distinct().values_list('id', flat=True)
+        return JsonResponse(list(result), safe=False)
     else:
         data = {'canned_food': CannedFood.objects.all()}
-    return render(request, 'website/shop.html', data)
+        return render(request, 'website/shop.html', data)
 
 
 def types(request):

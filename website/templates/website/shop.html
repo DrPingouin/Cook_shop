@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="balec" method="POST" action="" >
+    <form id="form_search" class="balec" method="POST" action="" >
         <input class="balec" type="search" name="canned_search">
         <button class="balec" type="submit"> Rechercher un produit </button>
         {% csrf_token %}
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row canned_row">
             {% for c in canned_food %}
-            <div class="col-sm-3 canned_card no-padding">
+            <div class="col-sm-3 canned_card no-padding" data-id="{{c.id}}">
                 <div class="canned_name text-center">
                     {{ c }}
                 </div>
@@ -60,4 +60,5 @@
 {% block javascript %}
     {% load static %}
     <script src="{% static 'website/js/shop.js' %}"></script>
+    <script src="{% static 'website/js/ajax_shop.js' %}"></script>
 {% endblock %}
