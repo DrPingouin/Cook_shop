@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load website_extras %}
 
 {% block title %} Accueil {% endblock %}
 
@@ -14,46 +15,17 @@
         {% csrf_token %}
     </form>
     <div class="container">
-        <div class="row canned_row">
-            {% for c in canned_food %}
-            <div class="col-sm-3 canned_card no-padding" data-id="{{c.id}}">
-                <div class="canned_name text-center">
-                    {{ c }}
-                </div>
-                <div class="canned_img">
-                </div>
-                <div class="canned_ingredients small-padding">
-                    <div id="ingredients_list">
-                        ingrédients
-                        {% if c.get_ingredients|length > 3 %}
-                            <img class="caret_img" src="{% static 'website/images/caret.jpeg' %}" alt="">
-                        {% endif %}
-                    </div>
-                    <div class="row canned_ingredients_row">
-                        {% if c.get_ingredients|length > 3 %}
-                            {% for i in c.get_ingredients|slice:":3"  %}
-                                <span class="col-sm-4 ingredient">{{i.name}}</span>
-                            {% endfor %}
-                            {% for i in c.get_ingredients|slice:"3:" %}
-                                <span class="hidden col-sm-4 ingredient">{{ i.name }}</span>
-                            {% endfor %}
-                            <span class="col-sm-4 ingredient three_dots">...</span>
-                        {% else %}
-                            {% for i in c.get_ingredients %}
-                                <span class="col-sm-4 ingredient">{{i.name}}</span>
-                            {% endfor %}
-                        {% endif %}
-
-                    </div>
-                </div>
-                <div class="canned_price text-right small-padding">
-                    <p>{{c.price}}€</p>
-                </div>
-
+        {% for c in canned_food %}
+            {% if forloop.counter|add:"-1"|modulo:"3" == 0 %}
+            <div class="row canned_row">
+            {% endif %}
+                {% include 'website/card.html' with element=c %}
+                <div class="offset-1"></div>
+            {% if forloop.counter|modulo:"3" == 0 and forloop.counter|add:"-1" != 0 %}
             </div>
-            <div class="offset-1"></div>
-            {% endfor %}
-        </div>
+            {% endif %}
+
+        {% endfor %}
     </div>
 {% endblock %}
 
