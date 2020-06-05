@@ -22,6 +22,5 @@ urlpatterns = [
     path('', website.shop, name='shop'),
     path('types', website.types, name='types'),
     path('ingredients', website.ingredients, name='ingredients'),
-    # path('ingredient/<:int>', website.ingredient)
-    # path('test', website.site.urls)
+    path('presentation', website.presentation, name='presentation'),
 ]

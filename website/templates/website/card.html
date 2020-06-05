@@ -12,7 +12,8 @@
             <div id="ingredients_list">
                 ingrédients
                 {% if element.get_ingredients|length > 3 %}
-                <img class="caret_img" src="{% static 'website/images/caret.jpeg' %}" alt="">
+                <!-- <img class="caret_img" src="{% static 'website/images/caret.jpeg' %}" alt=""> -->
+                <i class="caret_img fa fa-caret-right"></i>
                 {% endif %}
             </div>
             <div class="row canned_ingredients_row">

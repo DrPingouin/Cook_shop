@@ -29,3 +29,8 @@ def ingredients(request):
     else:
         data = {'ingredients': Ingredient.objects.all()}
     return render(request, 'website/ingredients.html', data)
+
+
+def presentation(request):
+    data = {}
+    return render(request, 'website/presentation.html', data)

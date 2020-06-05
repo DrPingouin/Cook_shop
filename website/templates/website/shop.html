@@ -9,11 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <form id="form_search" class="balec" method="POST" action="" >
-        <input class="balec" type="search" name="canned_search">
-        <button class="balec" type="submit"> Rechercher un produit </button>
-        {% csrf_token %}
-    </form>
     <div class="container">
         {% for c in canned_food %}
             {% if forloop.counter|add:"-1"|modulo:"3" == 0 %}

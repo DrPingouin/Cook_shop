@@ -11,12 +11,14 @@
         {% bootstrap_css %}
         {% bootstrap_javascript jquery='full' %}
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% load static %}
         <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
         {% block css %}
         {% endblock %}
     </head>
     <body>
+        {% include 'website/navbar.html' %}
         {% block content %}
         {% endblock %}
     </body>

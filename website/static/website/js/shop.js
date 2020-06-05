@@ -4,13 +4,21 @@ const CARD_SELECTOR = '.canned_card',
 
 
 $('.caret_img').on('click', function(){
-    if ($(this).hasClass('rotate_90')) {
-        $(this).removeClass('rotate_90');
+    if ($(this).hasClass('fa-caret-down')) {
+        $(this).removeClass('fa-caret-down').addClass('fa-caret-right')
         hide_ingredient_list($(this));
     } else {
-        $(this).addClass('rotate_90');
+        $(this).addClass('fa-caret-down').removeClass('fa-caret-right')
         expand_ingredient_list($(this));
     }
+
+    // if ($(this).hasClass('rotate_90')) {
+    //     $(this).removeClass('rotate_90');
+    //     hide_ingredient_list($(this));
+    // } else {
+    //     $(this).addClass('rotate_90');
+    //     expand_ingredient_list($(this));
+    // }
 });
 
 $('#form_search').on('submit', function(e) {
