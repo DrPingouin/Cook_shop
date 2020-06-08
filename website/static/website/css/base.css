@@ -14,3 +14,7 @@
 .hidden {
     display: none;
 }
+
+.ul-no-style {
+    list-style-type: none;   
+}

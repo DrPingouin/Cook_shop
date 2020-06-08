@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h4 class="d-flex justify-content-center">{{ canned_food.name }}</h4>
+    <div class="row">
+        <div class="col-lg-8 left-part">
+            <div class="row">
+                <div class="col-lg-4 product-photo">
+                    PHOTO
+                </div>
+                <div class="col-lg-8">
+                    <p>A consommer jusqu'au X</p>
+                    <p>Notes de consommation</p>
+                    <div class="product-notes">
+                        {{ canned_food.note }}
+                    </div>
+                    <div id="ingredients-list">
+                        <p>Ingredients</p>
+                        <ul class="row ul-no-style">
+                            {% for i in canned_food.get_ingredients %}
+                                <li class="col-lg-3">{{i}}</li>
+                            {% endfor %}
+                            <!-- <li class="col-lg-3">Carottes</li>
+                            <li class="col-lg-3">Poulet</li>
+                            <li class="col-lg-3">Curry</li>
+                            <li class="col-lg-3">Nutella</li>
+                            <li class="col-lg-3">Nutella</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 right-part">
+            <div class="price-related">
+                <p>Prixe : {{ canned_food.price }} €</p>
+                <p>Format : dropdown ou un autre choix</p>
+                <p>Ajouter au panier de yoplait</p>
+                <p>quantité restante (12)</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

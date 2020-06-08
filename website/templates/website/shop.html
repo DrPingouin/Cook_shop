@@ -10,7 +10,7 @@
 
 {% block content %}
     <div class="container">
-        {% for c in canned_food %}
+        {% for c in canned_foods %}
             {% if forloop.counter|add:"-1"|modulo:"3" == 0 %}
             <div class="row canned_row">
             {% endif %}
