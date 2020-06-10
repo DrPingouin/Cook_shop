@@ -16,14 +16,6 @@ class CannedFoodType(models.Model):
         return self.name
 
 
-class Stock(models.Model):
-    weight = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.weight)
-
-
 class Ingredient(models.Model):
     """
     We do not want to delete the Type object when an ingredient disappears
@@ -42,7 +34,6 @@ class CannedFood(models.Model):
     price = models.IntegerField(default=1)
     note = models.TextField(max_length=1000)
     type = models.ForeignKey(CannedFoodType, on_delete=models.PROTECT)
-    stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
     limited_date = models.DateField(default=datetime.now)
 
     def __str__(self):
@@ -50,6 +41,15 @@ class CannedFood(models.Model):
 
     def get_ingredients(self):
         return [i for i in self.ingredients.all()]
+
+
+class Stock(models.Model):
+    cannedfood = models.ForeignKey(CannedFood, on_delete=models.PROTECT)
+    weight = models.IntegerField(default=0)
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.canned_food_name
 
 
 class Order(models.Model):
