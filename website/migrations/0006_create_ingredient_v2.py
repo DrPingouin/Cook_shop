@@ -2,14 +2,14 @@
 
 from django.db import migrations
 
-from website.models import Type, Ingredient
+from website.models import IngredientType, Ingredient
 
 def create_ingredients(apps, schema_editor):
-    vegetable = Type.objects.get(name='légume')
-    meat = Type.objects.get(name='viande')
-    fish = Type.objects.get(name='poisson')
-    fruit = Type.objects.get(name='fruit')
-    spice = Type.objects.get(name='épice')
+    vegetable = IngredientType.objects.get(name='légume')
+    meat = IngredientType.objects.get(name='viande')
+    fish = IngredientType.objects.get(name='poisson')
+    fruit = IngredientType.objects.get(name='fruit')
+    spice = IngredientType.objects.get(name='épice')
 
     vegetables = [
         'brocolis', 'chou-fleur', 'carotte', 'haricot', 'courgette', 'courge',

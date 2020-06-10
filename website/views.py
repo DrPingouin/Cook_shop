@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 
-from website.models import Type, CannedFood, Ingredient
+from website.models import IngredientType, CannedFood, Ingredient
 
 
 def shop(request):
@@ -18,7 +18,7 @@ def shop(request):
 
 
 def types(request):
-    data = {'types': Type.objects.all()}
+    data = {'types': IngredientType.objects.all()}
     return render(request, 'website/types.html', data)
 
 
