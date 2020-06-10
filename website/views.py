@@ -25,11 +25,6 @@ def shop(request):
         return render(request, 'website/shop.html', data)
 
 
-def types(request):
-    data = {'types': IngredientType.objects.all()}
-    return render(request, 'website/types.html', data)
-
-
 def ingredients(request):
     if request.method == 'POST':
         x = request.POST['search']
