@@ -2,7 +2,7 @@
 
 from django.db import migrations
 
-from website.models import Type, Ingredient
+from website.models import IngredientType, Ingredient
 
 # def create_ingredients(apps, schema_editor):
 #     vegetable = Type.object.get(name='légume')
