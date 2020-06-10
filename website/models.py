@@ -21,7 +21,7 @@ class Stock(models.Model):
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.conserve_id
+        return str(self.weight)
 
 
 class Ingredient(models.Model):
