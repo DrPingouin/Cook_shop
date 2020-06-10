@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 
-from website.models import CannedFood
+from website.models import CannedFood, Stock
 
 
 def add_to_cart(request, id):
@@ -13,7 +13,6 @@ def add_to_cart(request, id):
     item_name = product_to_add.name
 
     return JsonResponse({'name': item_name})
-    # return HttpResponseRedirect('/boutique')
 
 
 def detail(request):

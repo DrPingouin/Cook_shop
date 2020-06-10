@@ -49,7 +49,7 @@ class Stock(models.Model):
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.canned_food_name
+        return f'{self.cannedfood.name}_{self.weight}g'
 
 
 class Order(models.Model):

@@ -35,11 +35,23 @@
         <div class="col-lg-4 right-part">
             <div class="price-related">
                 <p>Prixe : {{ canned_food.price }} €</p>
-                <p>Format : dropdown ou un autre choix</p>
+                <select class="form-control select-format">
+                    <option data-target-qty-id="{{stock.0.id}}" value="{{stock.0.weight}}" selected>{{stock.0.weight}} grammes</option>
+                    {% for s in stock|slice:"1:" %}
+                        <option data-target-qty-id="{{s.id}}" value="{{s.weight}}">{{s.weight}} grammes</option>
+                    {% endfor %}
+                </select>
                 <p>Ajouter au panier de yoplait</p>
-                <p>quantité restante (12)</p>
+                <span data-qty-id="{{stock.0.id}}" class="quantity-left">quantité restante ( {{stock.0.quantity}} )</span>
+                {% for s in stock|slice:"1:" %}
+                    <span data-qty-id="{{s.id}}" class="quantity-left" style="display:none;">quantité restante ( {{s.quantity}} )</span>
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 {% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'cart/js/cart.js' %}"></script>
+{% endblock javascript %}
