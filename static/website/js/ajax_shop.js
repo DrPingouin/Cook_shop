@@ -29,7 +29,7 @@ function change_display(ids) {
  * return list of ids
  */
 function send_data(data) {
-    return $.post(AJAX_URL, data).done(function(new_data) {
+    return $.post(AJAX_WEBSITE_URL, data).done(function(new_data) {
         return new_data.data
     }).fail(function() {
         alert('une erreur est survenue');

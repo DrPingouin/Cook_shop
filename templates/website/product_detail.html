@@ -2,8 +2,9 @@
 
 {% block css %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'website/css/product_detail.css' %}">
-{% endblock %}
+{% endblock css %}
 
 {% block content %}
 <div class="container">
@@ -26,11 +27,6 @@
                             {% for i in canned_food.get_ingredients %}
                                 <li class="col-lg-3">{{i}}</li>
                             {% endfor %}
-                            <!-- <li class="col-lg-3">Carottes</li>
-                            <li class="col-lg-3">Poulet</li>
-                            <li class="col-lg-3">Curry</li>
-                            <li class="col-lg-3">Nutella</li>
-                            <li class="col-lg-3">Nutella</li> -->
                         </ul>
                     </div>
                 </div>
@@ -46,4 +42,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

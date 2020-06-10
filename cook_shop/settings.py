@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'website',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'cook_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +71,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cook_shop.wsgi.application'
+
+# Sessions
+# https://docs.djangoproject.com/en/3.0/topics/http/sessions/
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Database
@@ -111,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
@@ -124,4 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_WEBSITE_URL = '/website/static/website/'
+
+# https://stackoverflow.com/questions/7574759/django-cant-get-static-css-files-to-load
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

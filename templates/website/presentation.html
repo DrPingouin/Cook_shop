@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} Présentation {% endblock %}
 
 {% block css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'website/css/presentation.css' %}">
-{% endblock %}
+{% endblock css %}
 
 {% block content %}
     <h1>Qui suis-je</h1>
@@ -14,4 +13,4 @@
     <p> Un maximum de fun dans les soirées avec moi</p>
 
     <p>Que ça soit sous forme de frites ou autres, je suis bonne dans tous les sens !</p>
-{% endblock %}
+{% endblock content %}

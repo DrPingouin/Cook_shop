@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>Le Bocal En Verre</title>
 
         {% load bootstrap4 %}
 
@@ -13,15 +13,15 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% load static %}
-        <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% block css %}
-        {% endblock %}
+        {% endblock css %}
     </head>
     <body>
-        {% include 'website/navbar.html' %}
+        {% include 'navbar.html' %}
         {% block content %}
-        {% endblock %}
+        {% endblock content %}
     </body>
     {% block javascript %}
-    {% endblock %}
+    {% endblock javascript %}
 </html>

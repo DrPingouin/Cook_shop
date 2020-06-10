@@ -1,5 +1,5 @@
 {% load static %}
-<a class="col-sm-3 canned-card no-padding a-no-style" data-id="{{element.id}}" href="{% url 'detail' element.id %}">
+<div class="col-sm-3 canned-card no-padding" data-id="{{element.id}}">
     <div class="canned-card-top">
         <div class="canned-name text-center">
             {{ element }}
@@ -8,15 +8,14 @@
         </div>
     </div>
     <div class="canned-card-bot">
-        <div class="canned_ingredients small-padding">
+        <div class="canned-ingredients small-padding">
             <div id="ingredients-list">
                 ingrédients
                 {% if element.get_ingredients|length > 3 %}
-                <!-- <img class="caret_img" src="{% static 'website/images/caret.jpeg' %}" alt=""> -->
                 <i class="caret-img fa fa-caret-right"></i>
                 {% endif %}
             </div>
-            <div class="row canned-ingredients_row">
+            <div class="row canned-ingredients-row">
                 {% if element.get_ingredients|length > 3 %}
                     {% for i in element.get_ingredients|slice:":3"  %}
                         <span class="col-sm-4 ingredient">{{i.name}}</span>
@@ -33,8 +32,12 @@
             </div>
         </div>
         <div class="canned-price text-right small-padding">
-            <p>{{element.price}}€</p>
+            <!-- <a href="{% url 'add_to_cart' element.id %}" class="btn-add-to-cart" target="{{element.id}}"> -->
+                <button class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' element.id %}">
+                    <i class="fa fa-2x fa-cart-plus"></i>
+                </button>
+            <!-- </a> -->
+            <span>{{element.price}}€</span>
         </div>
     </div>
-
-</a>
+</div>

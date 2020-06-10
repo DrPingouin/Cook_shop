@@ -1,6 +1,10 @@
 const CARD_SELECTOR = '.canned_card',
     INGREDIENTS_ROW_SELECTOR = '.canned_ingredients_row',
-    AJAX_URL = '';
+    AJAX_WEBSITE_URL = '',
+    ADD_TO_CART_SELECTOR = '.btn-add-to-cart',
+    NOTIFICATION_SELECTOR = '#notification';
+
+let notification = $(NOTIFICATION_SELECTOR);
 
 
 $('.caret_img').on('click', function(){
@@ -25,6 +29,13 @@ $('#form_search').on('submit', function(e) {
     e.preventDefault();
     data = $(this).serialize();
     update_page(data)
+})
+
+
+$(ADD_TO_CART_SELECTOR).on('click', function(e) {
+    e.preventDefault();
+    url = $(this).data('url')
+    add_to_cart(url)
 })
 
 
@@ -84,4 +95,13 @@ function remove_height_to_card(ingredients_row) {
 
     number_of_added_rows = Math.round((children.length - 6) / 3)
     card.css({'height': card.height()-(number_of_added_rows * height_child)})
+}
+
+
+function display_notification(element) {
+    notification.find('#text-to-replace').text(element);
+    notification.show();
+    setTimeout(function() {
+        notification.fadeOut('slow')
+    }, 2500);
 }

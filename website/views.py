@@ -13,7 +13,15 @@ def shop(request):
                 ).distinct().values_list('id', flat=True)
         return JsonResponse(list(result), safe=False)
     else:
-        data = {'canned_foods': CannedFood.objects.all()}
+        # if item_added := request.session.get('item_added', False):
+        #     del request.session['item_added']
+        item_added = 'poulet au fraise'
+        data = {
+            'canned_foods': CannedFood.objects.all(),
+            'item_added': item_added
+        }
+        # del request.session['cart']
+
         return render(request, 'website/shop.html', data)
 
 
@@ -40,5 +48,5 @@ def presentation(request):
 
 
 def product_detail(request, id):
-    product = CannedFood.objects.get(pk=id)
-    return render(request, 'website/product_detail.html', {'canned_food': product})
+    data = {'canned_food': CannedFood.objects.get(pk=id)}
+    return render(request, 'website/product_detail.html', data)
