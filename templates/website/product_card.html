@@ -1,5 +1,5 @@
 {% load static %}
-<div class="col-sm-3 canned-card no-padding" data-id="{{element.id}}">
+<a class="col-sm-3 canned-card no-padding a-no-style" data-id="{{element.id}}" href="{% url 'detail' element.id %}">
     <div class="canned-card-top">
         <div class="canned-name text-center">
             {{ element }}
@@ -40,4 +40,4 @@
             <span>{{element.price}}€</span>
         </div>
     </div>
-</div>
+</a>
