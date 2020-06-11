@@ -23,7 +23,7 @@
     margin-top: 15px;
 }
 
-#notification {
+#notification-success, #notification-error{
     min-width: 20%;
     top: 10px;
     position: fixed;

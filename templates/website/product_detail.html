@@ -41,10 +41,12 @@
                         <option data-target-qty-id="{{s.id}}" value="{{s.weight}}">{{s.weight}} grammes</option>
                     {% endfor %}
                 </select>
-                <p>Ajouter au panier de yoplait</p>
-                <span data-qty-id="{{stock.0.id}}" class="quantity-left">quantité restante ( {{stock.0.quantity}} )</span>
+                <button class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' stock.0.id %}">
+                    Ajouter au panier <i class="fa fa-2x fa-cart-plus"></i>
+                </button>
+                <div data-qty-id="{{stock.0.id}}" class="quantity-left">quantité restante ( {{stock.0.quantity}} )</div>
                 {% for s in stock|slice:"1:" %}
-                    <span data-qty-id="{{s.id}}" class="quantity-left" style="display:none;">quantité restante ( {{s.quantity}} )</span>
+                    <div data-qty-id="{{s.id}}" class="quantity-left" style="display:none;">quantité restante ( {{s.quantity}} )</div>
                 {% endfor %}
             </div>
         </div>

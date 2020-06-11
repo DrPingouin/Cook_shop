@@ -21,15 +21,6 @@ def shop(request):
         return render(request, 'website/shop.html', data)
 
 
-def ingredients(request):
-    if request.method == 'POST':
-        x = request.POST['search']
-        data = {'ingredients': Ingredient.objects.filter(Q(type__name=x) | Q(name=x))}
-    else:
-        data = {'ingredients': Ingredient.objects.all()}
-    return render(request, 'website/ingredients.html', data)
-
-
 def presentation(request):
     """
     To move to another app relativ to the blog part
