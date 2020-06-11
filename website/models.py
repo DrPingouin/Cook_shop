@@ -29,7 +29,7 @@ class Ingredient(models.Model):
 
 
 class CannedFood(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
     ingredients = models.ManyToManyField(Ingredient)
     price = models.IntegerField(default=1)
     note = models.TextField(max_length=1000)

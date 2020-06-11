@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='CannedFood',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=20)),
+                ('name', models.CharField(max_length=40)),
                 ('price', models.IntegerField(default=1)),
                 ('note', models.TextField(max_length=1000)),
             ],
