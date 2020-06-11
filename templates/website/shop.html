@@ -8,7 +8,6 @@
 {% endblock css %}
 
 {% block content %}
-    {% include 'website/notification.html' %}
     <div class="container custom-margin-top">
         {% for c in canned_foods %}
             {% if forloop.counter0|modulo:"3" == 0 %}
@@ -22,6 +21,7 @@
 
         {% endfor %}
     </div>
+    {% include 'website/notification.html' %}
 {% endblock content %}
 
 {% block javascript %}
