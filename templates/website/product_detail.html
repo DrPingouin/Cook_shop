@@ -35,17 +35,17 @@
         <div class="col-lg-4 right-part">
             <div class="price-related">
                 <p>Prixe : {{ canned_food.price }} €</p>
-                <select class="form-control select-format">
-                    <option data-target-qty-id="{{stock.0.id}}" value="{{stock.0.weight}}" selected>{{stock.0.weight}} grammes</option>
-                    {% for s in stock|slice:"1:" %}
-                        <option data-target-qty-id="{{s.id}}" value="{{s.weight}}">{{s.weight}} grammes</option>
+                <select data-product-id="{{element.id}}" class="form-control select-format">
+                    <option data-stock-id="{{canned_food.get_stocks.0.id}}" value="{{canned_food.get_stocks.0.weight}}" selected>{{canned_food.get_stocks.0.weight}} grammes</option>
+                    {% for s in canned_food.get_stocks|slice:"1:" %}
+                        <option data-stock-id="{{s.id}}" value="{{s.weight}}">{{s.weight}} grammes</option>
                     {% endfor %}
                 </select>
-                <button class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' stock.0.id %}">
+                <button data-product-id="{{element.id}}" class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' canned_food.get_stocks.0.id %}">
                     Ajouter au panier <i class="fa fa-2x fa-cart-plus"></i>
                 </button>
-                <div data-qty-id="{{stock.0.id}}" class="quantity-left">quantité restante ( {{stock.0.quantity}} )</div>
-                {% for s in stock|slice:"1:" %}
+                <div data-qty-id="{{canned_food.get_stocks.0.id}}" class="quantity-left">quantité restante ( {{canned_food.get_stocks.0.quantity}} )</div>
+                {% for s in canned_food.get_stocks|slice:"1:" %}
                     <div data-qty-id="{{s.id}}" class="quantity-left" style="display:none;">quantité restante ( {{s.quantity}} )</div>
                 {% endfor %}
             </div>

@@ -50,6 +50,12 @@ a.a-no-style:hover {
     margin-top: 10px;
 }
 
+.format-picker {
+    font-size: 11px;
+    font-weight: 700;
+    font-style: normal;
+    margin-right: 5px;
+}
 
 
 #ingredients-list {

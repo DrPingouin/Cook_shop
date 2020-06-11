@@ -42,6 +42,9 @@ class CannedFood(models.Model):
     def get_ingredients(self):
         return [i for i in self.ingredients.all()]
 
+    def get_stocks(self):
+        return [s for s in self.stock_set.all()]
+
 
 class Stock(models.Model):
     cannedfood = models.ForeignKey(CannedFood, on_delete=models.PROTECT)

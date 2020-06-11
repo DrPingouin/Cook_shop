@@ -31,5 +31,5 @@ def presentation(request):
 
 def product_detail(request, id):
     canned_food = CannedFood.objects.get(pk=id)
-    data = {'canned_food': canned_food, 'stock': canned_food.stock_set.all()}
+    data = {'canned_food': canned_food}
     return render(request, 'website/product_detail.html', data)

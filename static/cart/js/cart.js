@@ -1,24 +1,25 @@
 // Use of 'attr' instead of 'data' because we do some dynamic modification of the attribute
 
 
-const ADD_TO_CART_SELECTOR = '.btn-add-to-cart',
-        QUANTITY_INFOS_SELECTOR = '.quantity-left',
-        FORMAT_SELECTOR = '.select-format',
-        NOTIFICATION_SUCCESS_SELECTOR = '#notification-success',
-        NOTIFICATION_ERROR_SELECTOR = '#notification-error';
+let add_to_cart_selector = '.btn-add-to-cart',
+        quantity_infos_selector = '.quantity-left',
+        format_selector = '.select-format',
+        notification_success_selector = '#notification-success',
+        notification_error_selector = '#notification-error';
 
 // try to add element clicked to the cart
-$(ADD_TO_CART_SELECTOR).on('click', function(e) {
+$(add_to_cart_selector).on('click', function(e) {
     e.preventDefault();
     let url = $(this).attr('data-url');
     add_to_cart(url);
 })
 
 // change the quantity displayed and url associated with the new format selected
-$(FORMAT_SELECTOR).on('change', function() {
-    let id_selected = $(this).find('option:selected').data('target-qty-id');
-    display_quantity(id_selected);
-    change_add_to_cart_url(id_selected);
+$(format_selector).on('change', function() {
+    let stock_id_selected = $(this).find('option:selected').data('stock-id'),
+        product_id = $(this).data('product-id');
+    display_quantity(stock_id_selected);
+    change_add_to_cart_url(product_id, stock_id_selected);
 })
 
 
@@ -30,21 +31,19 @@ $(FORMAT_SELECTOR).on('change', function() {
  * Change an element of the notification and display it for a definite amount
  * of time
  */
-function display_notification_success(element) {
-    let notification = $(NOTIFICATION_SUCCESS_SELECTOR);
-
-    notification.find('#text-to-replace').text(element);
-    notification.show();
-    setTimeout(function() {
-        notification.fadeOut('slow')
-    }, 2500);
+function display_notification_success(message) {
+    let notification = $(notification_success_selector);
+    display_notification(notification, message)
 }
 
 
-function display_notification_error(element) {
-    let notification = $(NOTIFICATION_ERROR_SELECTOR);
+function display_notification_error(message) {
+    let notification = $(notification_error_selector);
+    display_notification(notification, message)
+}
 
-    notification.find('#text-to-replace').text(element);
+function display_notification(notification, message) {
+    notification.find('#text-to-replace').text(message);
     notification.show();
     setTimeout(function() {
         notification.fadeOut('slow')
@@ -57,7 +56,7 @@ function display_notification_error(element) {
  * targeted by the select
  */
 function display_quantity(id) {
-    $(QUANTITY_INFOS_SELECTOR).each(function() {
+    $(quantity_infos_selector).each(function() {
         if ($(this).data('qty-id') == id) {
             $(this).show();
         } else {
@@ -69,8 +68,10 @@ function display_quantity(id) {
 
 /**
  * change the data('url') of the button, used to know what url to call in ajax
+ * we use 'data()' here because we won't change the attr and so that
+ * we kinda avoid the user that messes with the DOM
  */
-function change_add_to_cart_url(new_id) {
+function change_add_to_cart_url(product_id, new_stock_id) {
     /**
      * regex takes first part of a url-like string
      * it captures something like that : '/word/other_word/12'
@@ -78,12 +79,13 @@ function change_add_to_cart_url(new_id) {
      * Used to change the number of the url to target antoher element_id
      */
     let regex = /((?:\/|\w)*)\/[0-9]+$/,
-        old_url = $(ADD_TO_CART_SELECTOR).attr('data-url'),
+        old_url = $(add_to_cart_selector).attr('data-url'),
         matches = old_url.match(regex);
     if (matches) {
-        new_url = matches[1] + '/' + new_id
+        new_url = matches[1] + '/' + new_stock_id
     }
-    $(ADD_TO_CART_SELECTOR).attr('data-url', new_url)
+    // target the good add_to_cart button and change it's url
+    $(add_to_cart_selector+"[data-product-id='"+product_id+"']").attr('data-url', new_url)
 }
 
 
@@ -95,10 +97,8 @@ function change_add_to_cart_url(new_id) {
  */
 function add_to_cart(url) {
     $.get(url).done(function(data) {
-        debugger;
         display_notification_success(data.name)
     }).fail(function() {
-        debugger;
         display_notification_error('une erreur est survenue');
     })
 }
