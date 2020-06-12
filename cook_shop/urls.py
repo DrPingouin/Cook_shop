@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-import website.views as website
+import blog.views as blog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('boutique/', include('website.urls')),
     path('panier/', include('cart.urls')),
-    path('', website.presentation, name='presentation'),
+    path('', blog.blog, name='blog'),
 ]

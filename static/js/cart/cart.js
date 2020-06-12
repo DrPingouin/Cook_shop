@@ -1,4 +1,14 @@
-// Use of 'attr' instead of 'data' because we do some dynamic modification of the attribute
+/*
+Use of 'attr' instead of 'data' because we do some dynamic modification of the attribute
+When we use the 'data()' method it's beacuse we want the initial value of the object
+
+data-product-id = the id of the cannedfood
+                (use to target the good button to add to our cart)
+
+data-stock-id = the id of the stock
+                (use to know which one of the 'version' of the canned food the user wants
+            eg: 250g or 500g so on...)
+*/
 
 
 let add_to_cart_selector = '.btn-add-to-cart',

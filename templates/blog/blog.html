@@ -7,6 +7,7 @@
 {% endblock css %}
 
 {% block content %}
-    <h1>Qui suis-je</h1>
-    <p>C'est la partie blog, en cours de production</p>
+    {% include 'blog/about.html' %}
+    {% include 'blog/contact.html' %}
+    {% include 'blog/footer.html' %}
 {% endblock content %}
