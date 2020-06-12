@@ -19,7 +19,7 @@ def create_canned_food(apps, schema_editor):
         rand_ids = random.sample(ingredients_id, rand_n)
         rand_ingredients = Ingredient.objects.filter(id__in=rand_ids)
 
-        note = "je suis une note robot olala attention à l'IA"
+        note = "je suis une note robot"
         random_price = random.randrange(1, 30)
         random_type = types[random.randrange(len(types))]
         random_name = rand_name(rand_ingredients)
