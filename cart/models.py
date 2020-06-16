@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from django.db.models import Sum
+from django.db.models import Sum, F
 
 from website.models import Stock
 
@@ -20,19 +20,31 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    @property
+    def product_price(self):
+        return self.quantity * self.item.cannedfood.price
+
 
 class Cart(models.Model):
     """
     Can change shipping fees to another model with predefinite fees
     """
-    orderitems = models.ManyToManyField(Product)
+    cartitems = models.ManyToManyField(Product)
     ordered_at = models.DateField(default=datetime.now)
     created_at = models.DateField(default=datetime.now)
     shipping_fees = models.IntegerField(default=1)
-    price = total_price(
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def total_price(self):
-        i = 0
-        items = self.orderitems.all()
-        i += ((item.item.cannedfood.price * item.quantity) for item in items)
+    @property
+    def cart_price(self):
+        queryset = self.cartitems.aggregate(
+            total_price=Sum(F('quantity') * F('item__cannedfood__price'))
+        )
+        return queryset['total_price']
+
+    @property
+    def total_items_in_cart(self):
+        queryset = self.cartitems.all().aggregate(
+            total_items=models.Sum('quantity')
+        )
+        return queryset['total_items']
